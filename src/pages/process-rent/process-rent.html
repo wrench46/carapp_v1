@@ -1,0 +1,170 @@
+<!--
+  Generated template for the ProcessRentPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Rent</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+    <ion-slides pager>
+        
+          <ion-slide>
+              <ion-list>
+                  <ion-item>
+                    <ion-label>Start Date:</ion-label>
+                    <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="todayDate" min="{{todaysDate}}" max="2020-10-31" (ionChange)="changeDateStart()"></ion-datetime>
+                  </ion-item>
+             
+              
+                  <ion-item>
+                    <ion-label>End Date:</ion-label>
+                    <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="todaysEndDate" min="{{todayDate}}" max="2020-10-31" (ionChange)="changeDateEnd()"></ion-datetime>
+                  </ion-item>
+
+                  <br />
+                  <ion-item>
+               
+                  </ion-item>
+
+                  <ion-item>
+                      <ion-icon name='people' item-start color="primary"></ion-icon>
+                      Available drivers
+                      <ion-note item-end>
+                          {{numofavailabledrivers}}
+                      </ion-note>
+                    </ion-item>
+                
+                    <ion-item>
+                        <ion-icon name='car' color="primary" item-start></ion-icon>
+                        Available cars
+                        <ion-note item-end>
+                            {{numofavailablecars}}
+                        </ion-note>
+                      </ion-item>
+
+
+                </ion-list>
+          </ion-slide>
+        
+          <ion-slide>
+            <h2>Select Car</h2>
+            <ion-list>
+              <ion-item *ngFor="let availablecar of availablecarunits" (click)="naviTo(availablecar)">
+              
+                <ion-thumbnail item-start>
+                  <img src="http://sagla.tech/backend/apps/carapp/uploads/car/{{availablecar.car_unit_id}}/{{availablecar.car_image_path}}">
+                </ion-thumbnail>
+                <div item-content>
+                <h2>{{availablecar.car_model}}</h2>
+                <p>Plate No. {{availablecar.car_plate_number}}</p>
+                <p> Php. {{availablecar.rent_price_per_day}}.00 per day</p>
+
+                <rating [(ngModel)]="availablecar.ratings"  readOnly="false" max="5"  emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false" > </rating>
+                  </div>
+                <!--  <ion-toggle item-end checked="false"></ion-toggle>-->
+                <ion-checkbox color="primary" checked="false" item-end (ionChange)="getSelectedCarValue(availablecar,$event)"></ion-checkbox>
+              </ion-item>
+            </ion-list>
+          </ion-slide>
+        
+          <ion-slide>
+            <h2>Select Driver</h2>
+            <ion-list>
+                <ion-item *ngFor="let availabledriver of availabledrivers">
+                
+                    <ion-avatar item-start>
+                    <img src="http://sagla.tech/backend/apps/carapp/uploads/profile/{{availabledriver.id}}/{{availabledriver.profile_pic}}">
+                  </ion-avatar>
+                  <div item-content>
+                  <h2>{{availabledriver.first_name}} {{availabledriver.last_name}}</h2>
+                  <p>Username: {{availabledriver.username}}</p>
+                  <rating [(ngModel)]="availabledriver.star_rating"  readOnly="false" max="5"  emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false" > </rating>
+                    </div>
+                 <!-- <ion-toggle item-end checked="false"></ion-toggle> -->
+                  <ion-checkbox class="driver-select" color="primary"  item-end (ionChange)="getSelectedDriverValue(availabledriver,$event)"></ion-checkbox>
+                </ion-item>
+              </ion-list>
+
+
+          </ion-slide>
+          <ion-slide>
+              <h2>Summary</h2>
+              <ion-list>
+
+                  <ion-item-group>
+                      <ion-item-divider color="light">Selected Car</ion-item-divider>
+                      <ion-item *ngFor="let availablecar of selectedcars" (click)="naviTo(availablecar)">
+                          
+                            <ion-thumbnail item-start>
+                              <img src="http://sagla.tech/backend/apps/carapp/uploads/car/{{availablecar.car_unit_id}}/{{availablecar.car_image_path}}">
+                            </ion-thumbnail>
+                        
+                            <h2>{{availablecar.car_model}}</h2>
+                            <p>Plate No. {{availablecar.car_plate_number}}</p>
+                            <p> Php.  {{availablecar.rent_price_per_day}}.00 per day</p>
+                             
+                          </ion-item>
+                        </ion-item-group>
+              </ion-list>
+              <ion-list>
+                  <ion-item-group>
+                      <ion-item-divider color="light">Selected Driver</ion-item-divider>
+                      <ion-item *ngFor="let availabledriver of selecteddrivers">
+                          
+                              <ion-avatar item-start>
+                              <img src="http://sagla.tech/backend/apps/carapp/uploads/profile/{{availabledriver.id}}/{{availabledriver.profile_pic}}">
+                            </ion-avatar>
+                           
+                            <h2>{{availabledriver.first_name}} {{availabledriver.last_name}}</h2>
+                            <p>Username: {{availabledriver.username}}</p>
+                           
+                   
+                          </ion-item>
+                    </ion-item-group>
+
+              </ion-list>
+
+              <ion-list>
+
+                  <ion-item-group>
+                      <ion-item-divider color="light">Selected Dates</ion-item-divider>
+                      <ion-item>
+                      <div item-start>
+                          <ion-label>Date Start</ion-label>
+                        <p>{{todayDate}}</p>
+                      </div>
+                      <div item-content>
+                          <ion-label>Date End</ion-label>
+                        <p>{{todaysEndDate}}</p>
+                      </div>
+                      <div item-end>
+                          <ion-label>Num. of Days</ion-label>
+                        <p style="text-align:center">{{totalnumofdays}}</p>
+                      </div>
+                    </ion-item>
+                    </ion-item-group>
+
+                    <ion-item-group>
+                        <ion-item-divider color="light">Total Amount Due</ion-item-divider>
+                        <ion-item>
+                        <h1 style="color:#f53d3d" item-content>Php.{{totaldue}}.00</h1>
+                      </ion-item>
+                      </ion-item-group>
+           
+                  
+               
+              </ion-list>
+
+              <button [disabled]="submitallowed==false" ion-button outline block (click)="saveRent()">Submit</button>
+              <br /><br />
+          </ion-slide>
+        
+        </ion-slides>
+
+</ion-content>

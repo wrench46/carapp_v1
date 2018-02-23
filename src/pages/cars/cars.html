@@ -1,0 +1,186 @@
+<!--
+  Generated template for the CarsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Car Lists</ion-title>
+    <ion-buttons end >
+      <button ion-button (click)="gotToAddCar()">
+        <ion-icon name="add" ></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-toolbar no-border-top>
+      <ion-segment [(ngModel)]="allcarlists">
+       
+        <ion-segment-button value="available" (click)='getAllCarList()'>
+          All
+        </ion-segment-button>
+
+        <ion-segment-button value="rented" (click)="ongoingRent()">
+         Rented
+        </ion-segment-button>
+
+        <ion-segment-button value="waiting-approval" (click)="waitingApprovals()">
+          Rental 
+        </ion-segment-button>
+
+        <ion-segment-button value="available-cars" (click)="availableCars()">
+          Available
+        </ion-segment-button>
+    
+
+      </ion-segment>
+    </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<!--
+    <ion-list>
+        <ion-item *ngFor="let car of carlist">
+        {{car.car_model}}
+        </ion-item>
+    </ion-list>
+      -->
+ <!-- 
+    <ion-list>
+        <ion-item *ngFor="let car of carlist">
+          <ion-thumbnail item-start>
+            <img src="http://sagla.tech/backend/apps/carapp/uploads/car/{{car.id}}/{{car.car_image_path}}">
+          </ion-thumbnail>
+          <h2>{{car.car_model}}</h2>
+          <p>Plate No. {{car.car_plate_number}}</p>
+          
+          <button ion-button clear item-end (click)="naviTo(car)">View</button>
+        </ion-item>
+      </ion-list>
+////////////////////////////////////////////////////////////////////////// -->
+
+      <div [ngSwitch]="allcarlists">
+          <ion-list *ngSwitchCase="'available'">
+            <ion-item-sliding *ngFor="let carlist of carlists">
+            <ion-item >
+              <ion-thumbnail item-start>
+                <img src="http://sagla.tech/backend/apps/carapp/uploads/car/{{carlist.car_unit_id}}/{{carlist.car_image_path}}">
+              </ion-thumbnail>
+              <h2>{{carlist.car_model}}</h2>
+              <p>Plate No. {{carlist.car_plate_number}}</p>
+    
+            </ion-item>
+            <ion-item-options>
+                <button ion-button color="primary" icon-start  (click)="naviTo(carlist)">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                    Update
+                </button>
+        
+              <button ion-button color="danger" icon-start (click)="removeCar(carlist)" *ngIf="carlist.car_unit_status != ''">
+                <ion-icon name="close-circle"></ion-icon>
+                Remove
+              </button>
+           
+
+            </ion-item-options>
+
+
+      </ion-item-sliding>
+    
+          </ion-list>
+      
+          <ion-list *ngSwitchCase="'rented'">
+              <ion-item *ngFor="let rentedcar of rentedcars">
+                  <ion-thumbnail item-start>
+                      <img src="http://sagla.tech/backend/apps/carapp/uploads/car/{{rentedcar.car_unit_id}}/{{rentedcar.car_image_path}}">
+                    </ion-thumbnail>
+                  <h2>{{rentedcar.car_model}}</h2>
+
+                  <p>{{rentedcar.rented_date_from | date:'mediumDate'}} - {{rentedcar.rented_date_to | date:'mediumDate'}}</p>
+                 <!--  <p style="font-size:10px">Status: {{carwaitingapproval.car_log_status}}</p> -->
+
+                </ion-item>
+                
+          </ion-list>
+
+          
+          <ion-list *ngSwitchCase="'waiting-approval'">
+       
+              <ion-item-sliding *ngFor="let carwaitingapproval of carwaitingapprovals">
+                  <ion-item>
+                      <ion-thumbnail item-start>
+                        <img src="http://sagla.tech/backend/apps/carapp/uploads/car/{{carwaitingapproval.car_unit_id}}/{{carwaitingapproval.car_image_path}}">
+                      </ion-thumbnail>
+                    <h2>{{carwaitingapproval.car_model}}</h2>
+                    <p>Date: {{carwaitingapproval.rented_date_from | date:'mediumDate'}} - {{carwaitingapproval.rented_date_to | date:'mediumDate'}}</p>
+                    <!-- <p style="font-size:10px">Status: {{carwaitingapproval.car_log_status}}</p> -->
+
+                  </ion-item>
+                  <ion-item-options>
+                      <button ion-button color="primary" icon-start  (click)="naviTo(carwaitingapproval)">
+                          <ion-icon name="checkmark-circle"></ion-icon>
+                          Details
+                      </button>
+              
+                    <button ion-button color="danger" icon-start (click)="declineRent(carwaitingapproval)">
+                      <ion-icon name="close-circle"></ion-icon>
+                      Decline
+                    </button>
+                    <button ion-button color="primary" icon-start (click)="approveRent(carwaitingapproval)">
+                        <ion-icon name="checkmark-circle"></ion-icon>
+                        Approve
+                    </button>
+
+                  </ion-item-options>
+
+
+            </ion-item-sliding>
+
+
+<!--
+              <ion-item *ngFor="let repaired of repairList" (click)="naviTo(repaired)">
+                <ion-thumbnail item-start>
+                    <img src="http://sagla.tech/backend/apps/carapp/uploads/car/{{repaired.car_unit_id}}/{{repaired.car_image_path}}">
+                </ion-thumbnail>
+                <h2>{{repaired.car_model}}</h2>
+                <p>Plate No. {{repaired.car_plate_number}}</p>
+              </ion-item>
+            -->
+             
+            </ion-list>
+
+            <ion-list *ngSwitchCase="'available-cars'">
+                <ion-item>
+                    <ion-label>From:</ion-label>
+                    <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="todayDate" min="{{todaysDate}}" max="2020-10-31" (ionChange)="changeDateStart()"></ion-datetime>
+                  </ion-item>
+             
+              
+                  <ion-item>
+                    <ion-label>To:</ion-label>
+                    <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="todaysEndDate" min="{{todayDate}}" max="2020-10-31" (ionChange)="changeDateEnd()"></ion-datetime>
+                  </ion-item>
+              <ion-item *ngFor="let availablecar of availablecarunits" (click)="naviTo(availablecar)">
+                
+                  <ion-thumbnail item-start>
+                    <img src="http://sagla.tech/backend/apps/carapp/uploads/car/{{availablecar.car_unit_id}}/{{availablecar.car_image_path}}">
+                  </ion-thumbnail>
+                
+                  <h2>{{availablecar.car_model}}</h2>
+                  <p>Plate No. {{availablecar.car_plate_number}}</p>
+                  <p> Php. {{availablecar.rent_price_per_day}}.00 per day</p>
+                 
+                </ion-item>
+
+            </ion-list>
+               
+        </div>
+
+
+
+ 
+</ion-content>

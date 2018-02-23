@@ -1,0 +1,21 @@
+page-process-rent {
+    .swiper-slide {
+        overflow-y: scroll;
+        display: block;
+    }
+    ul {
+        padding: 0px;
+        margin:0;
+      
+        &.rating li {
+          padding: 2px 2px !important;
+          background: none;
+          color: #ffb400;
+      
+          ion-icon {
+            font-size: 20px;
+          }
+        }
+      }
+
+}

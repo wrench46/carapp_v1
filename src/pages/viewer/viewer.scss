@@ -1,0 +1,10 @@
+page-viewer {
+    .ifameclass{
+        height:90%
+    }
+    .iframemaps{
+        height: calc(100% - 5px);
+        overflow: auto;
+    }
+
+}

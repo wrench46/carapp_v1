@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "594769183905",
+    "firebase_url": "https://carrental-b2ba0.firebaseio.com",
+    "project_id": "carrental-b2ba0",
+    "storage_bucket": "carrental-b2ba0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:594769183905:android:746d2f0de602d149",
+        "android_client_info": {
+          "package_name": "tech.sagla.biko"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "594769183905-g79a12s3av1h1lq76l8p9otmie6api2r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhzTEuqWGZVt9WEk_KdEh7JbX3MTSnen4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

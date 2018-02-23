@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>594769183905-8nhuqbfsm0nen1i6ntaugbn56irno81g.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.594769183905-8nhuqbfsm0nen1i6ntaugbn56irno81g</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCBDNZEhALRUiEYhlbgfe7pCn6B4qBHnH0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>594769183905</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>tech.sagla.biko</string>
+	<key>PROJECT_ID</key>
+	<string>carrental-b2ba0</string>
+	<key>STORAGE_BUCKET</key>
+	<string>carrental-b2ba0.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:594769183905:ios:746d2f0de602d149</string>
+	<key>DATABASE_URL</key>
+	<string>https://carrental-b2ba0.firebaseio.com</string>
+</dict>
+</plist>

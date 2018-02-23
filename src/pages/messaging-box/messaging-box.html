@@ -1,0 +1,44 @@
+<!--
+  Generated template for the MessagingBoxPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+
+      <ion-item>
+      <ion-avatar item-start>
+        <img src="http://sagla.tech/backend/apps/carapp/uploads/profile/{{driverdetail.id}}/{{driverdetail.profile_pic}}">
+      </ion-avatar>
+      <h2>{{driverdetail.first_name}} {{driverdetail.last_name}}</h2>
+    </ion-item>
+   
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div id="chatMessages">
+   
+          <div *ngFor="let message of chatmessages" [class]="message.specialMessage ? 'message special' : 'message'">
+            <div [class]="message.username == username ? 'innerMessage messageRight' : 'innerMessage messageLeft'">
+              <div class="username" *ngIf="message.username != username">{{message.username}}</div>
+              <div class="username" *ngIf="message.username == username">You</div>
+              <div class="messageContent">{{message.message}}</div>
+            </div>
+          </div>
+
+  </div>
+
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <div id="footer">
+            <div class="elem"><ion-input type="text" [(ngModel)]="messagetosend"></ion-input></div>
+            <div class="elem"><button ion-button icon-only (click)="sendChatMessage()"><ion-icon name="send"></ion-icon></button></div>
+        </div>
+    </ion-toolbar>
+</ion-footer>

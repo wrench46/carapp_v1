@@ -1,0 +1,78 @@
+<!--
+  Generated template for the AccountDriverPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Account</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-row>
+        <ion-item class="avatar-holder">
+        <ion-avatar item-start id="profile-info">
+               <img id="profile-image" src="http://sagla.tech/backend/apps/carapp/uploads/profile/{{userdetails.id}}/{{userdetails.profile_pic}}" [hidden]="lastImage !== null">
+               <!--   <img id="profile-image" src="http://sagla.tech/backend/apps/carapp/images/avatar.png" [hidden]="lastImage !== null"> -->
+               <img id="profile-image" src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null">
+        </ion-avatar>
+    </ion-item>
+</ion-row>
+<br />
+        <ion-row no-padding>
+            <ion-col>
+            <button ion-button clear small color="primary" icon-start  (click)="presentActionSheet()">
+                <ion-icon name='camera'></ion-icon>
+                Select Image
+            </button>
+            </ion-col>
+            <ion-col text-center>
+    
+            </ion-col>
+            <ion-col text-right>
+            <button ion-button clear small color="primary" icon-start [disabled]="lastImage === null" (click)="cancelCamerataken()">
+                <ion-icon name='hand'></ion-icon>
+                Cancel
+            </button>
+            </ion-col>
+        </ion-row>
+
+    <form [formGroup]="profileFormGroupDC" class="form-basic-info">
+        
+        <ion-item>
+            <ion-label color="primary" stacked>Username<span style="color:#f53d3d!important">*</span></ion-label>
+            <ion-input formControlName="username"  type="text" placeholder="Username" ></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label color="primary" stacked>First Name<span style="color:#f53d3d!important">*</span></ion-label>
+            <ion-input formControlName="firstname" type="text" placeholder="First Name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label color="primary" stacked>Last Name<span style="color:#f53d3d!important">*</span></ion-label>
+            <ion-input formControlName="lastname" type="text" placeholder="Last Name" ></ion-input>
+        </ion-item>
+        <ion-item>
+                <ion-label color="primary" stacked>Gender<span style="color:#f53d3d!important">*</span></ion-label>
+                <ion-select formControlName="gender" placeholder="Gender">
+                <ion-option value="female">Female</ion-option>
+                <ion-option value="male">Male</ion-option>
+                </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label color="primary" stacked>Phone Number<span style="color:#f53d3d!important">*</span></ion-label>
+            <ion-input formControlName="mobilephone" type="number" placeholder="Mobile Number" ></ion-input>
+        </ion-item>
+
+
+        <button ion-button outline block (click)="uploadImage()" [disabled]="!profileFormGroupDC.valid" >Update Profile</button>
+        
+
+    </form>
+
+</ion-content>

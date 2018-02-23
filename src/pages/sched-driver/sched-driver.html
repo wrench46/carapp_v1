@@ -1,0 +1,94 @@
+<!--
+  Generated template for the SchedDriverPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Schedule</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+    <ion-slides pager>
+       
+        <ion-slide>
+           
+            <ion-card>
+               <!--   <ion-card-header>
+                   <ion-item-divider color="light">  Schedule today</ion-item-divider> 
+                  
+                  </ion-card-header>-->
+              
+                  <ion-item>
+                    <ion-avatar item-start *ngIf="schedtoday===true">
+                      <img src="http://sagla.tech/backend/apps/carapp/uploads/profile/{{driverscheduletoday.id}}/{{driverscheduletoday.profile_pic}}">
+                    </ion-avatar>
+                    <h2 *ngIf="schedtoday===true"> {{first_name}} {{last_name}}</h2>
+                   <p *ngIf="schedtoday===true"> {{rentdatefrom}} <!--to {{rentdateto}}--></p>
+                  </ion-item>
+                
+                  <img src="http://sagla.tech/backend/apps/carapp/uploads/car/{{driverscheduletoday.car_unit_id}}/{{driverscheduletoday.car_image_path}}" *ngIf="schedtoday===true">
+                 
+                  <img src="http://sagla.tech/backend/apps/carapp/images/no_schedule.jpg" *ngIf="schedtoday===false">
+                  <p style="color:#f53d3d"  *ngIf="pendingstat">Your account is still pending.</p>
+                
+                  <ion-card-content>
+                      <ion-row no-padding *ngIf="schedtoday===true">
+                          <ion-col class="nopadds">
+                           
+                              Car: {{car_model}}
+                          
+                          </ion-col>
+                       
+                          <ion-col text-right class="nopadds">
+                            
+                              Car Plate No.: {{car_plate}}
+                        
+                          </ion-col>
+                      </ion-row>
+
+
+                  </ion-card-content>
+                 
+                </ion-card>
+             <p style="color:#f53d3d" *ngIf="schedEnd == true">Schedule for today completed!</p>
+               
+                <ion-fab center bottom *ngIf="hidehtpreocessor == false">
+                    <button ion-fab (click)="processDriverScheduleHT()" [color]="onRent ? 'secondary' : 'primary'"><ion-icon name="car"></ion-icon></button>
+                  </ion-fab>
+
+        </ion-slide>
+        <ion-slide>
+           <ion-item-divider color="light">Other Assigned Schedules!</ion-item-divider>
+        <!--  <p>Other Assigned Schedules</p>-->
+
+          <ion-list>
+            <ion-item  *ngFor="let futureSched of futureScheds">
+              <ion-avatar item-start>
+                <img src="http://sagla.tech/backend/apps/carapp/uploads/profile/{{futureSched.id}}/{{futureSched.profile_pic}}">
+              </ion-avatar>
+              <h2>{{futureSched.first_name}} {{futureSched.last_name}}</h2>
+              <h3>{{futureSched.car_model}}</h3>
+              <p>Date: {{futureSched.date_rented | date:'mediumDate'}} <!-- - {{futureSched.rented_date_to | date:'mediumDate'}}--></p>
+            </ion-item>
+          </ion-list>
+
+
+        </ion-slide>
+        <!--<ion-slide>
+          <h1>Slide 3</h1>
+        </ion-slide>
+        [ngClass]="{'bg-red': changeColor}"
+      -->
+      </ion-slides>
+
+    
+
+
+</ion-content>

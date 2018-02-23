@@ -1,0 +1,97 @@
+<!--
+  Generated template for the DriverListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar no-border-bottom>
+      <ion-title>
+        Drivers
+      </ion-title>
+    </ion-navbar>
+  
+    <ion-toolbar no-border-top>
+      <ion-segment [(ngModel)]="alldrivers">
+       
+        <ion-segment-button value="driverslists">
+          All
+        </ion-segment-button>
+
+        <ion-segment-button value="pending">
+          Pending
+        </ion-segment-button>
+
+        <ion-segment-button value="approved" >
+          Approved
+        </ion-segment-button>
+    
+       <ion-segment-button value="declined" >
+          Declined
+        </ion-segment-button>
+
+      </ion-segment>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <div [ngSwitch]="alldrivers">
+      <ion-list *ngSwitchCase="'driverslists'">
+ 
+        <ion-item *ngFor="let driver of driversList" (click)="goToDetails(driver)">
+          <ion-thumbnail item-start>
+            <img src="http://sagla.tech/backend/apps/carapp/uploads/profile/{{driver.id}}/{{driver.profile_pic}}">
+          </ion-thumbnail>
+          <h2>{{driver.first_name}}  {{driver.last_name}}</h2>
+          <h3>License: {{driver.presented_id_value}} </h3>
+          <p>Status: {{driver.status}}</p>
+
+        </ion-item>
+ 
+
+      </ion-list>
+  
+      <ion-list *ngSwitchCase="'pending'">
+        <ion-item *ngFor="let pending of pendingList" (click)="goToDetails(pending)">
+          <ion-thumbnail item-start>
+              <img src="http://sagla.tech/backend/apps/carapp/uploads/profile/{{pending.id}}/{{pending.profile_pic}}">
+          </ion-thumbnail>
+          <h2>{{pending.first_name}}  {{pending.last_name}}</h2>
+          <h3>License: {{pending.presented_id_value}} </h3>
+          <p>Status: {{pending.status}}</p>
+        </ion-item>
+       
+       
+       
+      </ion-list>
+
+      <ion-list *ngSwitchCase="'approved'">
+          <ion-item *ngFor="let approved of approvedList" (click)="goToDetails(approved)">
+            <ion-thumbnail item-start>
+                <img src="http://sagla.tech/backend/apps/carapp/uploads/profile/{{approved.id}}/{{approved.profile_pic}}">
+            </ion-thumbnail>
+            <h2>{{approved.first_name}}  {{approved.last_name}}</h2>
+            <h3>License: {{approved.presented_id_value}} </h3>
+            <p>Status: {{approved.status}}</p>
+          </ion-item>
+         
+        </ion-list>
+  
+      <ion-list *ngSwitchCase="'declined'">
+        <ion-item *ngFor="let declined of declinedList" (click)="goToDetails(declined)">
+          <ion-thumbnail item-start>
+              <img src="http://sagla.tech/backend/apps/carapp/uploads/profile/{{declined.id}}/{{declined.profile_pic}}">
+          </ion-thumbnail>
+          <h2>{{declined.first_name}}  {{declined.last_name}}</h2>
+          <h3>License: {{declined.presented_id_value}} </h3>
+          <p>Status: {{declined.status}}</p>
+
+        </ion-item>
+
+      </ion-list>
+
+      
+
+  
+    </div>
+  </ion-content>

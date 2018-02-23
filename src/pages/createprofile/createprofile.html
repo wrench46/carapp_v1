@@ -1,0 +1,130 @@
+<!--
+  Generated template for the CreateprofilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+        
+          <ion-navbar>
+            <ion-title>Create Profile</ion-title>
+          </ion-navbar>
+        
+        </ion-header>
+        
+        
+        <ion-content padding>
+        
+        
+                
+            <!--<img src="https://ionicframework.com/dist/preview-app/www/assets/img/advance-card-map-paris.png"> 
+            <img src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null">
+            <h3 [hidden]="lastImage !== null" style="text-align:center;min-height:150px">Please Select Image!</h3>-->
+        <ion-row>
+            <ion-item class="avatar-holder">
+            <ion-avatar item-start id="profile-info">
+                    <!-- <img id="profile-image" src="http://sagla.tech/backend/apps/carapp/uploads/profile/15/1513353635231.jpg" [hidden]="lastImage !== null"> -->
+                    <img id="profile-image" src="http://sagla.tech/backend/apps/carapp/images/avatar.png" [hidden]="lastImage !== null"> 
+                    <img id="profile-image" src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null">
+            </ion-avatar>
+        </ion-item>
+    </ion-row>
+    <br />
+            <ion-row no-padding>
+                <ion-col>
+                <button ion-button clear small color="primary" icon-start  (click)="presentActionSheet()">
+                    <ion-icon name='camera'></ion-icon>
+                    Select Image
+                </button>
+                </ion-col>
+                <ion-col text-center>
+        
+                </ion-col>
+                <ion-col text-right>
+                <button ion-button clear small color="primary" icon-start [disabled]="lastImage === null" (click)="cancelCamerataken()">
+                    <ion-icon name='hand'></ion-icon>
+                    Cancel
+                </button>
+                </ion-col>
+            </ion-row>
+        
+        
+        
+         
+            <ion-list>
+                <form [formGroup]="profileFormGroup" class="form-basic-info" *ngIf="!checkme">
+                    
+                    <ion-item>
+                        <ion-label color="primary" stacked>Username<span style="color:#f53d3d!important">*</span></ion-label>
+                        <ion-input formControlName="username"  type="text" placeholder="Username" ></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label color="primary" stacked>First Name<span style="color:#f53d3d!important">*</span></ion-label>
+                        <ion-input formControlName="firstname" type="text" placeholder="First Name"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label color="primary" stacked>Last Name<span style="color:#f53d3d!important">*</span></ion-label>
+                        <ion-input formControlName="lastname" type="text" placeholder="Last Name" ></ion-input>
+                    </ion-item>
+                    <ion-item>
+                            <ion-label color="primary" stacked>Gender<span style="color:#f53d3d!important">*</span></ion-label>
+                            <ion-select formControlName="gender" placeholder="Gender">
+                            <ion-option value="female">Female</ion-option>
+                            <ion-option value="male">Male</ion-option>
+                            </ion-select>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label color="primary" stacked>Phone Number<span style="color:#f53d3d!important">*</span></ion-label>
+                        <ion-input formControlName="mobilephone" placeholder="9171234567" type="number" ></ion-input>
+                    </ion-item>   
+                    
+                    <button ion-button outline block (click)="uploadImage()" [disabled]="!profileFormGroup.valid || lastImage === null">Create Profile</button>
+                    <button ion-button outline block (click)="logOutApp()">Cancel</button>
+        
+                </form>
+
+                <form [formGroup]="profileFormGroupDC" class="form-basic-info" *ngIf="checkme">
+        
+                        <ion-item>
+                            <ion-label color="primary" stacked>Username<span style="color:#f53d3d!important">*</span></ion-label>
+                            <ion-input formControlName="username"  type="text" placeholder="Username" ></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label color="primary" stacked>First Name<span style="color:#f53d3d!important">*</span></ion-label>
+                            <ion-input formControlName="firstname" type="text" placeholder="First Name"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label color="primary" stacked>Last Name<span style="color:#f53d3d!important">*</span></ion-label>
+                            <ion-input formControlName="lastname" type="text" placeholder="Last Name" ></ion-input>
+                        </ion-item>
+                        <ion-item>
+                                <ion-label color="primary" stacked>Gender<span style="color:#f53d3d!important">*</span></ion-label>
+                                <ion-select formControlName="gender" placeholder="Gender">
+                                <ion-option value="female">Female</ion-option>
+                                <ion-option value="male">Male</ion-option>
+                                </ion-select>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label color="primary" stacked>Phone Number<span style="color:#f53d3d!important">*</span></ion-label>
+                            <ion-input formControlName="mobilephone" type="number" placeholder="Mobile Number" ></ion-input>
+                        </ion-item>
+            
+                        <ion-item>
+                            <ion-label color="primary" stacked>User Type<span style="color:#f53d3d!important">*</span></ion-label>
+                            <ion-select formControlName="user_type"  placeholder="User type" (ionChange)="onSelectChange($event)">
+                            <ion-option value="driver">Driver</ion-option>
+                            <ion-option value="client">Client</ion-option>
+                            </ion-select>
+                        </ion-item>
+
+                        <button ion-button outline block (click)="uploadImage()" [disabled]="!profileFormGroupDC.valid || lastImage === null" >Create Profile</button>
+                        <button ion-button outline block (click)="logOutApp()">Cancel</button>
+            
+                    </form>
+        
+            </ion-list>
+        <!-- [disabled]="lastImage === null" -->
+          
+        
+        </ion-content>
+        

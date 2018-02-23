@@ -1,0 +1,16 @@
+page-home {
+  .blue-col{
+      background:url('http://sagla.tech/backend/apps/carapp/mainback.png') rgba(0, 0, 0, 0.6);
+      background-size:     cover;                 
+      background-repeat:   no-repeat;
+      background-position: center center;  
+  }
+  .mymainlogo{
+    display: block;
+    margin: 0 auto;
+    width: 35%;
+    border: 1px solid #488aff;
+    border-radius: 50%;
+    margin-top: 25px;
+  }
+}
